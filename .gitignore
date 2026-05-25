@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+.env
+
+# Data and checkpoints
+data/*
+!data/.gitkeep
+checkpoints/*
+!checkpoints/.gitkeep
+runs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Outputs
+*.csv
+*.zip
+*.tar
+*.tar.gz
+*.log
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
