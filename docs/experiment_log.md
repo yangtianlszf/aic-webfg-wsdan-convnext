@@ -1,13 +1,12 @@
 # 实验记录
 
-## 当前最终版本
+## 主要实验配置
 
 - 主文件：`src/wsdan_convnext_plus.py`
 - 主干：ConvNeXt / ConvNeXtV2
 - 默认模型：`convnext_base`
 - 图像尺寸：384
-- 默认损失：ELR+
-- 关键策略：WS-DAN、ArcFace、MixUp、CutMix、RandAugment、自清洗、类别均衡、一致性正则
+- 重点方向：数据增强、噪声鲁棒训练、类别均衡、样本筛选和稳定推理提交
 
 ## 后续实验建议
 

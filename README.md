@@ -6,20 +6,13 @@
 
 任务目标是在仅使用比赛提供的网络弱监督训练数据、并遵守单模型提交限制的前提下，训练一个对标签噪声、类别长尾和细粒度类别差异更鲁棒的图像分类模型。
 
-当前最终代码采用：
+本公开仓库重点展示：
 
-- ConvNeXt / ConvNeXtV2 backbone
-- ImageNet-1k 预训练权重
-- WS-DAN 风格注意力区域擦除
-- ArcFace margin 分类头
-- ELR+ / SCE / GCE / EQL 等噪声鲁棒损失
-- MixUp、CutMix、RandAugment
-- 类别均衡采样与类别重加权
-- 置信度 EMA 自清洗
-- 一致性正则
-- Top-K soft pseudo label
-- Flip TTA 推理
-- Uniform Model Soup 权重平均，推理阶段仍为单模型
+- 以 ConvNeXt / ConvNeXtV2 为 backbone，基于 ImageNet-1k 预训练权重构建细粒度图像分类模型；
+- 围绕网络弱监督数据中的标签噪声、类别长尾和细粒度差异问题进行训练配置与增强策略优化；
+- 整理训练脚本、推理脚本、提交文件说明和方法记录，便于回顾项目流程。
+
+更完整的方法探索记录见 [docs/method_summary.md](docs/method_summary.md)，实验记录模板见 [docs/experiment_log.md](docs/experiment_log.md)。
 
 ## 仓库结构
 
@@ -116,11 +109,11 @@ pred_results_web5000.csv
 
 最终将两个 CSV 压缩为一个 zip 文件提交。
 
-## 当前最终代码
+## 当前代码
 
 主代码文件：`src/wsdan_convnext_plus.py`
 
-它是单文件训练与推理脚本，支持以下模式：
+它是单文件训练与推理脚本，主要支持训练和预测流程；部分实验辅助模式用于伪标签生成与权重平均尝试。
 
 ```bash
 python src/wsdan_convnext_plus.py --mode train   ...
@@ -128,3 +121,8 @@ python src/wsdan_convnext_plus.py --mode predict ...
 python src/wsdan_convnext_plus.py --mode pseudo  ...
 python src/wsdan_convnext_plus.py --mode soup    ...
 ```
+
+## 说明
+
+- 本仓库为比赛项目整理版，不包含竞赛数据集、训练权重和最终提交压缩包。
+- README 仅保留稳定概述，避免把所有实验性策略都表述为最终结论；具体尝试以 `docs/` 中记录为准。
